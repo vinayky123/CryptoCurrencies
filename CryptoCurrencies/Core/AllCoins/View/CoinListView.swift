@@ -20,20 +20,28 @@ struct CoinListView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(0..<viewModel.coins.count, id: \.self, content: { index in
-                    let coin = viewModel.coins[index]
-                    NavigationLink(value: coin) {
-                        CoinRowView(coin: coin, coinsListViewModel: viewModel)
-                            .frame(height: 80)
-                            .onAppear {
-                                if index == (viewModel.coins.count - 1)  {
-                                    Task {
-                                        await viewModel.fetchCoins()
-                                    }
-                                }
-                            }
+                Section(header:sectionHeader)
+                {
+                    if (viewModel.coins.isEmpty)  {
+                        Text("Unable to fetch coins data at the moment, please try again later.")
                     }
-                })
+                    else {
+                        ForEach(0..<viewModel.coins.count, id: \.self, content: { index in
+                            let coin = viewModel.coins[index]
+                            NavigationLink(value: coin) {
+                                CoinRowView(coin: coin, coinsListViewModel: viewModel)
+                                    .frame(height: 80)
+                                    .onAppear {
+                                        if index == (viewModel.coins.count - 1)  {
+                                            Task {
+                                                await viewModel.fetchCoins()
+                                            }
+                                        }
+                                    }
+                            }
+                        })
+                    }
+                }
             }
             .navigationDestination(for: Coin.self) { coin in
                 CoinDetailView(coin:coin, service: service)
@@ -51,6 +59,22 @@ struct CoinListView: View {
             await viewModel.fetchCoins()
         }
     }
+    
+    
+    var sectionHeader: some View  {
+        HStack {
+            Text("Coin")
+                .font(.subheadline)
+            
+            Spacer()
+            
+            Text("Price")
+                .font(.subheadline)
+            
+        }
+    }
+    
+    
 }
 
 #Preview {
