@@ -11,7 +11,7 @@ Features
 
 Installation
 
-    • git clone git@github.com:vinayky123/CryptoCurrencies.git
+    • git clone https://github.com/vinayky123/CryptoCurrencies.git
     
 Architecure
     
