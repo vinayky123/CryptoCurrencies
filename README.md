@@ -24,3 +24,7 @@ Project Structure
     •    CoinListView: Renders a list of coins.
     •    CoinDetailView: Shows detailed info of a selected coin.
     •    Network: EndPoint, NetworkManager, CoinDataService, CoinsCache (Optional caching/pagination)
+
+
+
+Note:- APIs used in this application have rate limit about 30 requests per minute. If app requests more than that (while scrolling coins list) we might experience frequent error messages. Please wait for a minute and try again.

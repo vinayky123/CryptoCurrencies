@@ -30,7 +30,6 @@ struct CoinListView: View {
                             let coin = viewModel.coins[index]
                             NavigationLink(value: coin) {
                                 CoinRowView(coin: coin, coinsListViewModel: viewModel)
-                                    .frame(height: 80)
                                     .onAppear {
                                         if index == (viewModel.coins.count - 1)  {
                                             Task {
@@ -60,7 +59,6 @@ struct CoinListView: View {
         }
     }
     
-    
     var sectionHeader: some View  {
         HStack {
             Text("Coin")
@@ -70,11 +68,8 @@ struct CoinListView: View {
             
             Text("Price")
                 .font(.subheadline)
-            
         }
     }
-    
-    
 }
 
 #Preview {

@@ -20,16 +20,18 @@ struct CoinRowView: View {
             CoinImageView(url: coin.image)
                 .frame(width: 32, height: 32)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 4) {
                 HStack{
                     Text("\(coin.name)")
                         .fontWeight(.semibold)
+                    Text("(\(coin.symbol.uppercased()))")
                     Spacer()
                     Text(coin.currentPrice.toCurrencyString())
                         .fontWeight(.semibold)
                 }
-                Text(coin.symbol.uppercased())
+                
                 Text("Market Capitalization: \(coin.marketCap.toCurrencyString())")
+                    .fontWeight(.light)
 
             }
         }
