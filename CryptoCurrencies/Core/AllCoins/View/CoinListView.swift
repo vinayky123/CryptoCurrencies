@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/**
+ Shows list of Coins retrieved.
+ */
 struct CoinListView: View {
     
     private let service: CoinDataServiceProtocol

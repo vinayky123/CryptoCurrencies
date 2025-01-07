@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/**
+ Represents a Row View of a Coin, used in CoinsListView to show list of coins as rows
+ */
 struct CoinRowView: View {
     
     let coin:Coin

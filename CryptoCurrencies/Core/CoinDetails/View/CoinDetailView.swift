@@ -8,7 +8,11 @@
 import Foundation
 import SwiftUI
 
+/**
+ Shows a coin details, used when user selects a coin in CoinListView.
+ */
 struct CoinDetailView: View {
+    
     private let coin: Coin
     @ObservedObject var viewModel: CoinDetailsViewModel
     

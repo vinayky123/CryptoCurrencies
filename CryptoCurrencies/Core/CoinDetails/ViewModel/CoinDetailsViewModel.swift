@@ -7,13 +7,22 @@
 
 import Foundation
 
-class CoinDetailsViewModel:ObservableObject {
+/**
+View Model to manage the state of `CoinDetails` data and also exposes the data to the view
+ */
+class CoinDetailsViewModel: ObservableObject {
     
+    // MARK:- Properties
+    
+    // Published properties to trigger UI updates
     @Published var coinDetails:CoinDetails?
     @Published var errorMessage:String?
     @Published var isLoading:Bool = false
 
+    // Service to fetch the coin details data
     private var service:CoinDataServiceProtocol
+    
+    // To fetch the corresponding details of user selected coin
     private var coinId:String
     
     init(coinId:String, service:CoinDataServiceProtocol) {
@@ -21,6 +30,12 @@ class CoinDetailsViewModel:ObservableObject {
         self.service = service
     }
 
+    // MARK:- Methods
+    
+    /**
+     Fetches coin details asynchronosly using coin data service.
+     This method updates the view model's state.
+     */
     @MainActor
     func fetchCoinDetails() async  {
         do {
@@ -34,5 +49,4 @@ class CoinDetailsViewModel:ObservableObject {
             self.errorMessage = error.customDescription
         }
     }
-    
 }

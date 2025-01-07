@@ -7,7 +7,11 @@
 
 import SwiftUI
 
+/**
+ Custom Image View loads image for the image url provided
+ */
 struct CoinImageView: View {
+    
     @ObservedObject var imageLoader: ImageLoader
     
     init(url: String) {

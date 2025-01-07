@@ -7,7 +7,12 @@
 
 import Foundation
 
+/**
+ Custom Enum Error impeneting Error protocol to provide customised errors with descrtiption
+ */
 enum NetworkError: Error {
+    
+    // Different types of error cases
     case invalidData
     case jsonParsingFailure
     case requestFailed(description: String)
@@ -15,7 +20,7 @@ enum NetworkError: Error {
     case invalidStatusCode(statusCode: Int)
     case unknownError(error:Error)
     
-    
+    // Returns customised string for the different types of errors
     var customDescription: String {
         switch self {
         case .invalidData: return "Invalid data"
@@ -26,5 +31,4 @@ enum NetworkError: Error {
         case let .unknownError(error): return "We are reviving too many requests to the server,please slow down. \(error)" // 30 requests per minute
         }
     }
-
 }

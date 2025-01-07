@@ -7,22 +7,38 @@
 
 import Foundation
 
-class CoinListViewModel:ObservableObject {
+/**
+View Model to manage the state of `[Coin]` data and also exposes the data to the view
+ */
+class CoinListViewModel: ObservableObject {
     
+    // MARK:- Properties
+    
+    // Published properties to trigger UI updates
     @Published var coins = [Coin]()
     @Published var errorMessage:String?
     @Published var isLoading = false
     @Published var hasMoreData = true
     
+    // To track the current page number for pagination
     private var currentPage = 0
+    
+    // Number of coins to fetch per page
     private let pageSize = 10
     
+    // Service to fetch the coins data
     private let service: CoinDataServiceProtocol
     
     init(service:CoinDataServiceProtocol){
         self.service = service
     }
     
+    // MARK:- Methods
+    
+    /**
+     Fetches next page of coins asynchronosly using coin data service.
+     This method also handles pagination and updates the view model's state.
+     */
     @MainActor
     func fetchCoins() async {
         

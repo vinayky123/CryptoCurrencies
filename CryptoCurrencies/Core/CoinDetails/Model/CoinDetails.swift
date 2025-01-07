@@ -5,6 +5,10 @@
 //  Created by Vinay on 28/12/24.
 //
 
+/**
+ Defines each coin details.
+ Implements Codable to encode/decode where ever needed
+ */
 struct CoinDetails: Codable {
     let id: String
     let symbol: String

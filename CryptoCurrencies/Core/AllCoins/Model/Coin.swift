@@ -7,8 +7,10 @@
 
 import Foundation
 
-
-// MARK: - Coin
+/**
+ Defines Coin data.
+ Implements Codable to encode/decode where ever needed
+ */
 struct Coin: Codable, Identifiable, Hashable {
     let id, symbol, name: String
     let image: String

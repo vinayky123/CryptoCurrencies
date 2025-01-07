@@ -7,17 +7,27 @@
 
 import SwiftUI
 
+/**
+ Helper class to fetch image asynchronously or from cache.
+ */
 class ImageLoader: ObservableObject, NetworkManager {
-    @Published var image: Image?
     
+    @Published var image: Image?
+    @Published var errorMessage: String?
+
     private let imageUrlString: String
     
     init(imageUrlString: String) {
+        
         self.imageUrlString = imageUrlString
         
-        Task { await loadImage()}
+        Task { await loadImage() }
     }
     
+    /**
+     Fetches image from the given image url.
+     If the image is already cached for the key updates it to image.
+    */
     @MainActor
     func loadImage() async {
  
@@ -32,6 +42,7 @@ class ImageLoader: ObservableObject, NetworkManager {
             ImageCache.shared.set(image: uIImage, key: imageUrlString)
             self.image = Image(uiImage: uIImage)
         }catch {
+            self.errorMessage = error.localizedDescription
         }
     }
 }

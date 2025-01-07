@@ -7,11 +7,17 @@
 
 import Foundation
 
+/**
+ Enum representing the cases to retreive coin data
+ */
 enum CoinsEndPoint {
     case allCoins(page: Int, pageLimit: Int)
     case coinDetails(id: String)
 }
 
+/**
+ CoinsEndPoint implementing EndPoint protocol to provide the concrete implementation.
+ */
 extension CoinsEndPoint : EndPoint {
 
     var method: HTTPMethods {
