@@ -6,30 +6,80 @@
 //
 
 import XCTest
+@testable import CryptoCurrencies
 
 final class CoinsCacheTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    //This test case has numeric numbers to the tests
+    //as the test executuon should ordered since it operates
+    //on a shared object.
+    /**
+     Test if the instatiation of CoinsCache works as expected
+     */
+    func test1CoinsCacheShouldNotBeNil(){
+        let cache = CoinsCache.shared
+        XCTAssertNotNil(cache)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    /**
+     Test cache does not return any data initially
+     */
+    func test2GetAllCoinsReturnsNil(){
+        let cache = CoinsCache.shared
+        let coins = cache.getAllCoins()
+        XCTAssertNotNil(cache)
+        XCTAssertNil(coins)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    /**
+     Test cache returns data after appending coins data
+     */
+    func test3GetAllConinsShouldSuccess() async throws{
+        let cache = CoinsCache.shared
+        let mockService = MockCoinDataService()
+        let coins = try await mockService.fetchCoins(page: 1, pageLimit: 20)
+        XCTAssertNotNil(coins)
+        // append coins from service on cache
+        cache.appendCoins(newCoins: coins, page: 1)
+        //retrieve coins from cache
+        let cachedCoins = cache.getAllCoins()
+        XCTAssertNotNil(cachedCoins)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    /**
+     Test cache has appended page available
+     */
+    func test4hasPageShouldSuccess() async throws{
+        let cache = CoinsCache.shared
+        let mockService = MockCoinDataService()
+        let coins = try await mockService.fetchCoins(page: 1, pageLimit: 20)
+        XCTAssertNotNil(coins)
+        // append coins from service on cache
+        cache.appendCoins(newCoins: coins, page: 1)
+        //retrieve coins from cache
+        let cachedCoins = cache.getAllCoins()
+        XCTAssertNotNil(cachedCoins)
+        //Check page number
+        let pageExists = cache.hasPage(page: 1)
+        XCTAssertTrue(pageExists)
     }
-
+    
+    /**
+     Test cache has appended page available
+     */
+    func test5hasPageShouldFail() async throws{
+        let cache = CoinsCache.shared
+        let mockService = MockCoinDataService()
+        let coins = try await mockService.fetchCoins(page: 1, pageLimit: 20)
+        XCTAssertNotNil(coins)
+        // append coins from service on cache
+        cache.appendCoins(newCoins: coins, page: 1)
+        //retrieve coins from cache
+        let cachedCoins = cache.getAllCoins()
+        XCTAssertNotNil(cachedCoins)
+        //Check page number
+        let pageExists = cache.hasPage(page: 2)
+        XCTAssertFalse(pageExists)
+    }
+    
 }

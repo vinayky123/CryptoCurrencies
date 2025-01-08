@@ -2,7 +2,7 @@
 //  CryptoCurrenciesUITestsLaunchTests.swift
 //  CryptoCurrenciesUITests
 //
-//  Created by Devi on 08/01/25.
+//  Created by Vinay on 08/01/25.
 //
 
 import XCTest

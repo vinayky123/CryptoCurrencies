@@ -6,30 +6,42 @@
 //
 
 import XCTest
+@testable import CryptoCurrencies
 
 final class CoinsDetailsCacheTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    /**
+     Test if the instantiation of Coin Details Cache is successful
+     */
+    func testCoinDetailsCacheShouldNotBeNil(){
+        let cache = CoinDetailsCache.shared
+        XCTAssertNotNil(cache)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    /**
+     Test if Coin Details Cache has no initial value
+     */
+    func testGetCoinDetailsShouldFail(){
+        let cache = CoinDetailsCache.shared
+        XCTAssertNotNil(cache)
+        let details = cache.get(key: "btc")
+        XCTAssertNil(details)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    /**
+     Test if Coin Details Cache return value after setting with details
+     */
+    func testGetCoinDetailsShouldSucceed() async throws{
+        let cache = CoinDetailsCache.shared
+        XCTAssertNotNil(cache)
+        let mockService = MockCoinDataService()
+        let details = try await mockService.fetchCoinDetails(id: "btc")
+        var cachedDetails = cache.get(key: "btc")
+        XCTAssertNotNil(details)
+        XCTAssertNil(cachedDetails)
+        cache.set(coinDetails: details!, key: "btc")
+        cachedDetails = cache.get(key: "btc")
+        XCTAssertNotNil(details)
     }
 
 }

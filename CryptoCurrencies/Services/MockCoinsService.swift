@@ -29,7 +29,9 @@ class MockCoinDataService: CoinDataServiceProtocol {
     }
   
     func fetchCoinDetails(id: String) async throws -> CoinDetails? {
-        
+        if let mockError {
+            throw mockError
+        }        
         let description = Description(text: "Test description")
         let bitcoinDetails = CoinDetails(id: "bitcoin", symbol: "btc", name: "Bitcoin", description: description)
         return bitcoinDetails

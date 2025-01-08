@@ -45,6 +45,7 @@ struct CoinDetailView: View {
         .task {
             await viewModel.fetchCoinDetails()
         }
+        
     }
     
     private var coinDetailsDescription: some View {
@@ -54,6 +55,7 @@ struct CoinDetailView: View {
                 .padding(.vertical)
             Spacer()
         }
+        .accessibilityIdentifier("coinDescriptionView")
     }
     
     private var coinDetailsHeader: some View {
@@ -72,6 +74,7 @@ struct CoinDetailView: View {
             
             CoinImageView(url: coin.image)
                 .frame(width: 64, height: 64)
+                .accessibilityIdentifier("coinsDetailImage")
         }
     }
 }

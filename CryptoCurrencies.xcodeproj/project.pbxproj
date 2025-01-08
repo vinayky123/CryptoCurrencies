@@ -14,11 +14,19 @@
 			remoteGlobalIDString = D38BFF672D1FFC7B00A755A5;
 			remoteInfo = CryptoCurrencies;
 		};
+		D3B72D882D2E0A910034C35E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D38BFF602D1FFC7B00A755A5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D38BFF672D1FFC7B00A755A5;
+			remoteInfo = CryptoCurrencies;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D38BFF682D1FFC7B00A755A5 /* CryptoCurrencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoCurrencies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D38BFF792D1FFC7C00A755A5 /* CryptoCurrenciesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoCurrenciesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3B72D822D2E0A910034C35E /* CryptoCurrenciesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoCurrenciesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +53,11 @@
 			path = CryptoCurrenciesTests;
 			sourceTree = "<group>";
 		};
+		D3B72D832D2E0A910034C35E /* CryptoCurrenciesUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CryptoCurrenciesUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +75,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D3B72D7F2D2E0A910034C35E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -70,6 +90,7 @@
 			children = (
 				D38BFF6A2D1FFC7B00A755A5 /* CryptoCurrencies */,
 				D38BFF7C2D1FFC7C00A755A5 /* CryptoCurrenciesTests */,
+				D3B72D832D2E0A910034C35E /* CryptoCurrenciesUITests */,
 				D38BFF692D1FFC7B00A755A5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +100,7 @@
 			children = (
 				D38BFF682D1FFC7B00A755A5 /* CryptoCurrencies.app */,
 				D38BFF792D1FFC7C00A755A5 /* CryptoCurrenciesTests.xctest */,
+				D3B72D822D2E0A910034C35E /* CryptoCurrenciesUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +153,29 @@
 			productReference = D38BFF792D1FFC7C00A755A5 /* CryptoCurrenciesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D3B72D812D2E0A910034C35E /* CryptoCurrenciesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3B72D8A2D2E0A910034C35E /* Build configuration list for PBXNativeTarget "CryptoCurrenciesUITests" */;
+			buildPhases = (
+				D3B72D7E2D2E0A910034C35E /* Sources */,
+				D3B72D7F2D2E0A910034C35E /* Frameworks */,
+				D3B72D802D2E0A910034C35E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3B72D892D2E0A910034C35E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D3B72D832D2E0A910034C35E /* CryptoCurrenciesUITests */,
+			);
+			name = CryptoCurrenciesUITests;
+			packageProductDependencies = (
+			);
+			productName = CryptoCurrenciesUITests;
+			productReference = D3B72D822D2E0A910034C35E /* CryptoCurrenciesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -145,6 +190,10 @@
 						CreatedOnToolsVersion = 16.1;
 					};
 					D38BFF782D1FFC7C00A755A5 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = D38BFF672D1FFC7B00A755A5;
+					};
+					D3B72D812D2E0A910034C35E = {
 						CreatedOnToolsVersion = 16.1;
 						TestTargetID = D38BFF672D1FFC7B00A755A5;
 					};
@@ -166,6 +215,7 @@
 			targets = (
 				D38BFF672D1FFC7B00A755A5 /* CryptoCurrencies */,
 				D38BFF782D1FFC7C00A755A5 /* CryptoCurrenciesTests */,
+				D3B72D812D2E0A910034C35E /* CryptoCurrenciesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -179,6 +229,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D38BFF772D1FFC7C00A755A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3B72D802D2E0A910034C35E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -202,6 +259,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D3B72D7E2D2E0A910034C35E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -209,6 +273,11 @@
 			isa = PBXTargetDependency;
 			target = D38BFF672D1FFC7B00A755A5 /* CryptoCurrencies */;
 			targetProxy = D38BFF7A2D1FFC7C00A755A5 /* PBXContainerItemProxy */;
+		};
+		D3B72D892D2E0A910034C35E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D38BFF672D1FFC7B00A755A5 /* CryptoCurrencies */;
+			targetProxy = D3B72D882D2E0A910034C35E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -447,6 +516,43 @@
 			};
 			name = Release;
 		};
+		D3B72D8B2D2E0A910034C35E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com..CryptoCurrenciesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CryptoCurrencies;
+			};
+			name = Debug;
+		};
+		D3B72D8C2D2E0A910034C35E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com..CryptoCurrenciesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CryptoCurrencies;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,6 +579,15 @@
 			buildConfigurations = (
 				D38BFF912D1FFC7C00A755A5 /* Debug */,
 				D38BFF922D1FFC7C00A755A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D3B72D8A2D2E0A910034C35E /* Build configuration list for PBXNativeTarget "CryptoCurrenciesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3B72D8B2D2E0A910034C35E /* Debug */,
+				D3B72D8C2D2E0A910034C35E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

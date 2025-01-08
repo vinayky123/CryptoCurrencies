@@ -2,12 +2,16 @@
 //  CoinsListViewUITests.swift
 //  CryptoCurrenciesUITests
 //
-//  Created by Devi on 08/01/25.
+//  Created by Vinay on 08/01/25.
 //
 
+
 import XCTest
+@testable import CryptoCurrencies
 
 final class CoinsListViewUITests: XCTestCase {
+    
+    let app = XCUIApplication()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -37,5 +41,42 @@ final class CoinsListViewUITests: XCTestCase {
                 XCUIApplication().launch()
             }
         }
+    }
+
+    func testCoinsViewListExists() throws{
+        app.launch()
+        let navBar = app.navigationBars["Crypto Currencies"]
+        let navBarLabel = navBar.staticTexts["Crypto Currencies"]
+        //wait for app to launch and load in max 5 seconds
+        let loaded = navBarLabel.waitForExistence(timeout: 5)
+        if loaded{
+            XCTAssertTrue(navBarLabel.exists)
+            let collectionView = app.collectionViews
+            let coinText = collectionView/*@START_MENU_TOKEN@*/.staticTexts["COIN"]/*[[".cells.staticTexts[\"COIN\"]",".staticTexts[\"COIN\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+            let priceText = collectionView/*@START_MENU_TOKEN@*/.staticTexts["PRICE"]/*[[".cells.staticTexts[\"PRICE\"]",".staticTexts[\"PRICE\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+            XCTAssertTrue(coinText.exists)
+            XCTAssertTrue(priceText.exists)
+            let cells = collectionView.cells
+            // check list has rows
+            XCTAssertTrue(cells.element.exists)
+        }else{
+            XCTFail("List should be loaded")
+        }
+    }
+    
+    func testListScrollShouldWork(){
+        app.launch()
+        let collectionViews = XCUIApplication().collectionViews
+        let firstRow = collectionViews.cells.element(boundBy: 0) // get the first row
+        let initialCells = collectionViews.cells.count
+        //swipe for 3 times to fetch new data
+        firstRow.swipeUp()
+        firstRow.swipeUp()
+        sleep(1)
+        firstRow.swipeUp()
+        firstRow.swipeUp()
+        sleep(1)
+        let latestCells = collectionViews.cells.count
+        XCTAssertTrue(latestCells > initialCells)
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 /**
- Shows list of Coins retrieved.
+ Shows list of Coins retrieved when the app launches.
  */
 struct CoinListView: View {
     
@@ -26,7 +26,7 @@ struct CoinListView: View {
                 Section(header:sectionHeader)
                 {
                     if (viewModel.coins.isEmpty)  {
-                        Text("Unable to fetch coins data at the moment, please try again later.")
+                        Text("Unable to fetch coins data at the moment, please wait or try again later.")
                     }
                     else {
                         ForEach(0..<viewModel.coins.count, id: \.self, content: { index in
@@ -40,7 +40,8 @@ struct CoinListView: View {
                                             }
                                         }
                                     }
-                            }
+                                    
+                            }.accessibilityIdentifier("row-\(index)")
                         })
                     }
                 }

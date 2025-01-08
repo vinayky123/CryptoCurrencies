@@ -11,6 +11,9 @@ import XCTest
 
 class CoinListViewModelTests: XCTest {
     
+    /**
+     Check initialisation of CoinListsView model succeeds with valid data
+     */
     func testInitCoinsListViewModelShouldNotBeNil(){
         let service = MockCoinDataService()
         let viewModel = CoinListViewModel(service: service)
@@ -18,6 +21,9 @@ class CoinListViewModelTests: XCTest {
         XCTAssertNotNil(viewModel,"Coins View Model should not be nil")
     }
     
+    /**
+     Check coins fetch retreiving the data
+     */
     func testCoinsFetchShouldBeSuccessful() async {
         let service = MockCoinDataService()
         let viewModel = CoinListViewModel(service: service)
@@ -27,6 +33,9 @@ class CoinListViewModelTests: XCTest {
         XCTAssertTrue(viewModel.coins.count > 0)
     }
     
+    /**
+     Check CoinListViewModel is updating the error and has no coins, if there is invalid data
+     */
     func testCoinsFetchWithInvalidDataShouldNotSucceed() async {
         let service = MockCoinDataService()
         service.mockData = invalidCoinsTestData
@@ -40,6 +49,9 @@ class CoinListViewModelTests: XCTest {
 
     }
     
+    /**
+     Check CoinListViewModel is giving the expected error message for invalid data
+     */
     func testCoinsFetchThowrsInvalidDataError() async {
         let service = MockCoinDataService()
         service.mockError = NetworkError.invalidData
