@@ -48,13 +48,10 @@ struct CoinListView: View {
             .navigationDestination(for: Coin.self) { coin in
                 CoinDetailView(coin:coin, service: service)
             }
-            .overlay {
-                if let error = viewModel.errorMessage {
-                    Text(error)
-                        .padding()
-                        .fontWeight(.regular)
-                }
-            }
+            .alert(isPresented: $viewModel.displayAlert, content: {
+                Alert(title: Text("Error"), message: Text(viewModel.errorMessage), dismissButton: .default(Text("OK")))
+            })
+            
             .navigationTitle(Constants.CoinListView.title)
         }
         .task {

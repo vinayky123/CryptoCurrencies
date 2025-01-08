@@ -16,15 +16,19 @@ class CoinListViewModel: ObservableObject {
     
     // Published properties to trigger UI updates
     @Published var coins = [Coin]()
-    @Published var errorMessage:String?
+    @Published var displayAlert:Bool = false
     @Published var isLoading = false
     @Published var hasMoreData = true
-    
+    var errorMessage:String = ""
+
     // To track the current page number for pagination
     private var currentPage = 0
     
     // Number of coins to fetch per page
-    private let pageSize = 10
+    // NOTE:-
+    // Since there is a rate limit of 5-10 requests per minute for the Public API used in this app using pageSize as 200,
+    // ideally this number should be as minimal as the number of visible cells in the list.
+    private let pageSize = 200
     
     // Service to fetch the coins data
     private let service: CoinDataServiceProtocol
@@ -50,12 +54,12 @@ class CoinListViewModel: ObservableObject {
         let nextPage = currentPage + 1
         do {
             self.coins = try await service.fetchCoins(page: nextPage, pageLimit: pageSize)
-            
             self.currentPage = nextPage
-            self.isLoading = false
         }catch {
             guard let error = error as? NetworkError else { return }
             self.errorMessage = error.customDescription
+            self.displayAlert = true
         }
+        self.isLoading = false
     }
 }
