@@ -16,7 +16,7 @@ enum Constants {
     enum API {
         static let baseUrl = "api.coingecko.com"
         static let contentType = "application/json"
-        static let apiKey = "CG-ndJFpu7seFEkmLW3usr835ff"
+        static let apiKey = "CG-u6nNeWCd9WDrzs4ua89BXHVm"
         static let urlScheme = "https"
     }
     
