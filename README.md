@@ -27,4 +27,8 @@ Project Structure
 
 
 
-Note:- APIs used in this application have rate limit about 5-10 requests per minute based on usage. If app requests more than that (while scrolling coins list) we might experience frequent error messages. Please wait for a minute and try again.
+Note:- 
+
+    • API Key is should be stored in some vault and access from there in the production app, as it is sample app using from constants.
+        
+    • APIs used in this application have rate limit about 5-10 requests per minute based on usage. If app requests more than that (while scrolling coins list) we might experience frequent error messages. Please wait for a minute and try again.
