@@ -8,7 +8,7 @@
 import Foundation
 
 /**
-View Model to manage the state of `[Coin]` data and also exposes the data to the view
+ View Model to manage the state of `[Coin]` data and also exposes the data to the view
  */
 class CoinListViewModel: ObservableObject {
     
@@ -20,25 +20,36 @@ class CoinListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var hasMoreData = true
     var errorMessage:String = ""
-
+    
     // To track the current page number for pagination
     private var currentPage = 0
     
     // Number of coins to fetch per page
     // NOTE:-
-    // Since there is a rate limit of 5-10 requests per minute for the Public API used in this app using pageSize as 200,
+    // Since there is a rate limit of 5-10 requests per minute for the Public API used in this app using pageSize as 300,
     // ideally this number should be as minimal as the number of visible cells in the list.
-    private let pageSize = 200
+    private let pageSize = 300
     
     // Service to fetch the coins data
     private let service: CoinDataServiceProtocol
+    
+    @Published var searchText: String = ""
+    
+    // Filter coins based on search text
+    var filteredCoins: [Coin] {
+        if searchText.isEmpty {
+            return coins
+        } else {
+            return coins.filter{$0.name.lowercased().contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())}
+        }
+    }
     
     init(service:CoinDataServiceProtocol){
         self.service = service
     }
     
     // MARK:- Methods
-    
+
     /**
      Fetches next page of coins asynchronosly using coin data service.
      This method also handles pagination and updates the view model's state.

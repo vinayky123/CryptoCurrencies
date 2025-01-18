@@ -29,8 +29,8 @@ struct CoinListView: View {
                         Text("Unable to fetch coins data at the moment, please wait or try again later.")
                     }
                     else {
-                        ForEach(0..<viewModel.coins.count, id: \.self, content: { index in
-                            let coin = viewModel.coins[index]
+                        ForEach(0..<viewModel.filteredCoins.count, id: \.self, content: { index in
+                            let coin = viewModel.filteredCoins[index]
                             NavigationLink(value: coin) {
                                 CoinRowView(coin: coin, coinsListViewModel: viewModel)
                                     .onAppear {
@@ -54,6 +54,8 @@ struct CoinListView: View {
             })
             
             .navigationTitle(Constants.CoinListView.title)
+            .searchable(text: $viewModel.searchText, prompt: "Search Coins")
+
         }
         .task {
             await viewModel.fetchCoins()
